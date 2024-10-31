@@ -1,0 +1,13 @@
+﻿@page
+@model PE_PRN231_FA24_TrialTest_KieuQuangMinh_FE.Pages.PersonManagement.DeleteModel
+@{
+    ViewData["Title"] = "Delete Person";
+}
+
+<h2>Delete Person</h2>
+<form method="post">
+    Are you sure you want to delete ?
+    <input asp-for="Id" class="form-control" hidden />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-page="./Index" asp-route-id="@Model.Person.PersonID">Cancel</a>
+</form>

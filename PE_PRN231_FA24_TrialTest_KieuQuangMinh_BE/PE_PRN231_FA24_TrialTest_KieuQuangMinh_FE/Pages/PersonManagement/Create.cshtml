@@ -1,0 +1,91 @@
+﻿@page
+@model PE_PRN231_FA24_TrialTest_KieuQuangMinh_FE.Pages.PersonManagement.CreateModel
+@{
+    ViewData["Title"] = "Create Person";
+}
+
+<h2>Create Person</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Person.Fullname">Full Name</label>
+        <input asp-for="Person.Fullname" class="form-control" />
+        <span asp-validation-for="Person.Fullname" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Person.BirthDay">Birth Day</label>
+        <input asp-for="Person.BirthDay" class="form-control" type="date" />
+        <span asp-validation-for="Person.BirthDay" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Person.Phone">Phone</label>
+        <input asp-for="Person.Phone" class="form-control" />
+        <span asp-validation-for="Person.Phone" class="text-danger"></span>
+    </div>
+
+    <h4>Viruses</h4>
+    <div id="virusList">
+        @for (int i = 0; i < Model.Person.Viruses.Count; i++)
+        {
+            <div class="virus-item border p-2 mb-2">
+                <div class="form-group">
+                    <label>Virus Name</label>
+                    <select asp-for="Person.Viruses[i].VirusName" class="form-control">
+                        <option value="">Select a virus</option>
+                        @foreach (var virus in Model.Viruses)
+                        {
+                            <option value="@virus">@virus</option>
+                        }
+                    </select>
+                    <span asp-validation-for="Person.Viruses[i].VirusName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Resistance Rate</label>
+                    <input asp-for="Person.Viruses[i].ResistanceRate" class="form-control" type="number" step="0.01" min="0" max="1" />
+                    <span asp-validation-for="Person.Viruses[i].ResistanceRate" class="text-danger"></span>
+                </div>
+
+                <button type="button" class="btn btn-danger" onclick="removeVirus(@i)">Remove Virus</button>
+            </div>
+        }
+    </div>
+
+    <button type="button" class="btn btn-primary" onclick="addVirus()">Add Virus</button>
+    <button type="submit" class="btn btn-success">Create Person</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        function addVirus() {
+            var virusList = document.getElementById('virusList');
+            var index = virusList.children.length;
+            var newVirus = `
+                        <div class="virus-item border p-2 mb-2">
+                            <div class="form-group">
+                                <label>Virus Name</label>
+                                <select name="Person.Viruses[` + index + `].VirusName" class="form-control">
+                                    <option value="">Select a virus</option>
+        @foreach (var virus in Model.Viruses)
+        {
+                                            <option value="@virus">@virus</option>
+        }
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Resistance Rate</label>
+                                <input name="Person.Viruses[` + index + `].ResistanceRate" class="form-control" type="number" step="0.01" min="0" max="1" />
+                            </div>
+                            <button type="button" class="btn btn-danger" onclick="this.parentNode.remove()">Remove Virus</button>
+                        </div>`;
+            virusList.insertAdjacentHTML('beforeend', newVirus);
+        }
+
+        function removeVirus(index) {
+            document.getElementsByName('Person.Viruses[' + index + ']')[0].parentNode.remove();
+        }
+    </script>
+}

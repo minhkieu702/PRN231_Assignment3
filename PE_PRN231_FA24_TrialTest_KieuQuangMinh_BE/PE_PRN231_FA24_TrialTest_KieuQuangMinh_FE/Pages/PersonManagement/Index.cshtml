@@ -1,0 +1,55 @@
+﻿@page
+@model PE_PRN231_FA24_TrialTest_KieuQuangMinh_FE.Pages.PersonManagement.IndexModel
+@{
+    <div class="container mt-4">
+        <h2>Person List</h2>
+        <a asp-page="./Create" >Create</a>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Person ID</th>
+                    <th>Full Name</th>
+                    <th>Birth Day</th>
+                    <th>Phone</th>
+                    <th>Viruses</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var person in Model.Models)
+                {
+                    <tr>
+                        <td>@person.PersonId</td>
+                        <td>@person.FullName</td>
+                        <td>@person.BirthDay.ToString("yyyy-MM-dd")</td>
+                        <td>@person.Phone</td>
+                        <td>
+                            <table class="table table-sm table-borderless">
+                                <thead>
+                                    <tr>
+                                        <th>Virus Name</th>
+                                        <th>Resistance Rate</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var virus in person.Viruses)
+                                    {
+                                        <tr>
+                                            <td>@virus.VirusName</td>
+                                            <td>@virus.ResistanceRate</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <a asp-page="./Update" asp-route-id="@person.PersonId">Edit</a> |
+                            <a asp-page="./Details" asp-route-id="@person.PersonId">Details</a> |
+                            <a asp-page="./Delete" asp-route-id="@person.PersonId">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
