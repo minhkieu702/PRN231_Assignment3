@@ -79,7 +79,7 @@ namespace PE_PRN231_FA24_TrialTest_KieuQuangMinh_BE.Controllers
             }
             catch (Exception ex)
             {
-                return Unauthorized(ex.Message);
+                return Unauthorized(new {error = ex.Message });
             }
         }
 
@@ -99,7 +99,7 @@ namespace PE_PRN231_FA24_TrialTest_KieuQuangMinh_BE.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new { error = ex.Message });
             }
         }
         [Authorize(Roles = "1,2,3")]
@@ -113,7 +113,7 @@ namespace PE_PRN231_FA24_TrialTest_KieuQuangMinh_BE.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new { error = ex.Message });
             }
         }
         [Authorize(Roles = "1,3")]
@@ -127,7 +127,7 @@ namespace PE_PRN231_FA24_TrialTest_KieuQuangMinh_BE.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(error: ex.Message);
+                return BadRequest(new { error = ex.Message });
             }
         }
         [Authorize(Roles = "3")]
@@ -141,7 +141,7 @@ namespace PE_PRN231_FA24_TrialTest_KieuQuangMinh_BE.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new { error = ex.Message });
             }
         }
         [Authorize(Roles = "3")]
@@ -155,7 +155,7 @@ namespace PE_PRN231_FA24_TrialTest_KieuQuangMinh_BE.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new { error = ex.Message });
             }
         }
         [Authorize(Roles = "1,3")]
@@ -169,7 +169,7 @@ namespace PE_PRN231_FA24_TrialTest_KieuQuangMinh_BE.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new {error = ex.Message});
             }
         }
     }

@@ -145,7 +145,7 @@ namespace Repositories.Repositories
                     }
                     else
                     {
-                        associatedVirus.Virus = existedVirus;
+                        associatedVirus.ResistanceRate = virus.ResistanceRate;
                         _context.PersonViruses.Update(associatedVirus);
                     }
                 }

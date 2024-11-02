@@ -13,6 +13,7 @@ namespace Repositories.RequestModel
         [Required]
         public string Fullname { get; set; } = null!;
 
+        [DataType(DataType.Date)]
         [BirthdayValidation("01-01-2007")]
         public DateTime BirthDay { get; set; }
 

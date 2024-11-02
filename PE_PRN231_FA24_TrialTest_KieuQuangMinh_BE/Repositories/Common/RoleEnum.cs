@@ -8,8 +8,8 @@ namespace Repositories.Common
 {
     public enum RoleEnum
     {
-        Doctor = 3, 
-        Admin = 1, 
-        Patients = 2
+        doctor = 3, 
+        admin = 1, 
+        patients = 2
     }
 }

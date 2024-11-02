@@ -18,6 +18,7 @@ namespace Repositories.RequestModel
         public string Fullname { get; set; } = null!;
 
         [BirthdayValidation("01-01-2007")]
+        [DataType(DataType.Date)]
         public DateTime BirthDay { get; set; }
 
         [Required(ErrorMessage = "Phone Number is required.")]
